@@ -1,0 +1,5 @@
+FROM debian:latest
+
+RUN apt-get update && apt-get install mariadb-server -y
+
+COPY initial_db.sql /
