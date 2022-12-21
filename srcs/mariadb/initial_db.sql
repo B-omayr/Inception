@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS wordpress;
-CREATE USER 'iomayr'@localhost IDENTIFIED BY 'user123321';
-GRANT ALL PRIVILEGES ON 'iomayr'@localhost IDENTIFIED BY 'user123321';
-FLUSH PRIVILEGES;
+CREATE USER 'iomayr'@localhost;
+GRANT ALL PRIVILEGES ON wordpress.* to 'iomayr'@'%' IDENTIFIED BY 'user123321';
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'root123321';
+FLUSH PRIVILEGES;
