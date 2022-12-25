@@ -1,0 +1,7 @@
+FROM debian:buster
+
+EXPOSE 9000
+
+RUN apt-get update && \
+    apt-get -y install php7.3-fpm 
+
