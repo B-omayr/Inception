@@ -4,13 +4,72 @@ services:
   mariadb:
     build: ./requirements/mariadb
     image: mariadb
+    container_name: mariadb
     ports:
       - 3306:3306
     restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - inceptionnet
     
   nginx:
     build: ./requirements/nginx
     image: nginx
+    container_name: nginx
     ports:
-      - 433:433
+      - 443:443
     restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - wp:/var/www/html
+    depends_on:
+      - wordpress
+    networks:
+      - inceptionnet  
+    
+  wordpress:
+    build: ./requirements/wordpress
+    image: wordpress
+    container_name: wordpress
+    ports:
+      - 9000:9000
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - wp:/var/www/html
+    depends_on:
+      - mariadb
+      - redis
+    networks:
+      - inceptionnet
+
+  redis:
+    build: ./requirements/bonus/redis
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+    restart: unless-stopped
+    networks:
+      - inceptionnet
+volumes:
+  db:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ibra/incep_data/database
+      o: bind
+  wp:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ibra/incep_data/wordpress
+      o: bind
+networks:
+  inceptionnet:
+    driver: bridge
