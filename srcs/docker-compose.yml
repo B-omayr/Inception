@@ -13,7 +13,7 @@ services:
     volumes:
       - db:/var/lib/mysql
     networks:
-      - inceptionnet
+      - inceptioNnet
     
   nginx:
     build: ./requirements/nginx
@@ -29,7 +29,7 @@ services:
     depends_on:
       - wordpress
     networks:
-      - inceptionnet  
+      - inceptioNnet  
     
   wordpress:
     build: ./requirements/wordpress
@@ -44,9 +44,8 @@ services:
       - wp:/var/www/html
     depends_on:
       - mariadb
-      - redis
     networks:
-      - inceptionnet
+      - inceptioNnet
 
   redis:
     build: ./requirements/bonus/redis
@@ -55,21 +54,23 @@ services:
     ports:
       - 6379:6379
     restart: unless-stopped
+    depends_on:
+      - wordpress;
     networks:
-      - inceptionnet
+      - inceptioNnet
 volumes:
   db:
     driver: local
     driver_opts:
       type: none
-      device: /home/ibra/incep_data/database
       o: bind
+      device: /Users/iomayr/data/mysql
   wp:
     driver: local
     driver_opts:
       type: none
-      device: /home/ibra/incep_data/wordpress
       o: bind
+      device: /Users/iomayr/data/wordpress
 networks:
-  inceptionnet:
+  inceptioNnet:
     driver: bridge
