@@ -44,6 +44,7 @@ services:
       - wp:/var/www/html
     depends_on:
       - mariadb
+      - redis
     networks:
       - inceptioNnet
 
@@ -54,10 +55,10 @@ services:
     ports:
       - 6379:6379
     restart: unless-stopped
-    depends_on:
-      - wordpress;
     networks:
       - inceptioNnet
+      
+
 volumes:
   db:
     driver: local
