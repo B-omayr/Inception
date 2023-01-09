@@ -13,6 +13,9 @@ clean:
 	rm -rf /Users/iomayr/data
 	docker-compose -f srcs/docker-compose.yml down -v
 
+fclean:
+	docker-compose -f srcs/docker-compose.yml system prune -af
+
 all: clean build
 
 .PHONY: all clean build stop up
