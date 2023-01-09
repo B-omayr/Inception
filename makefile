@@ -14,7 +14,7 @@ clean:
 	docker-compose -f srcs/docker-compose.yml down -v
 
 fclean:
-	docker-compose -f srcs/docker-compose.yml system prune -af
+	docker system prune -a
 
 all: clean build
 
