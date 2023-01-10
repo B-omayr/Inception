@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     echo "maxmemory 256mb" >> /etc/redis/redis.conf;\
     echo "maxmemory-policy allkeys-lru" >> /etc/redis/redis.conf
     
-EXPOSE 6379
+COPY /tools/script.sh /
+RUN chmod +x script.sh
 
-CMD [ "redis-server", "--protected-mode", "no" ]
+CMD [ "./script.sh" ]
