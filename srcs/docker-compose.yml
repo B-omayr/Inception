@@ -48,6 +48,16 @@ services:
     networks:
       - inceptioNnet
 
+  website:
+    build: ./requirements/bonus/website
+    container_name: website
+    image: website
+    networks:
+      - inceptioNnet
+    ports:
+      - 81:81
+    restart: unless-stopped
+    
   redis:
     build: ./requirements/bonus/redis
     image: redis
@@ -84,6 +94,8 @@ services:
       - "/var/run:/var/run:rw"
       - "/sys:/sys:ro"
       - "/var/lib/docker/:/var/lib/docker:ro"
+
+
 volumes:
   db:
     driver: local
