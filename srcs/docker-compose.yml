@@ -95,6 +95,23 @@ services:
       - "/sys:/sys:ro"
       - "/var/lib/docker/:/var/lib/docker:ro"
 
+  ftp:
+    container_name: ftp
+    build: ./requirements/bonus/ftp/.
+    image: ftp:42
+    depends_on:
+      - wordpress
+    volumes:
+      - wp:/home/ibra/ftp
+    env_file:
+      - .env
+    ports:
+      - "21:21"
+      - "20:20"
+      - "40000-40005:40000-40005"
+    networks:
+      - inceptioNnet
+    restart: always
 
 volumes:
   db:
