@@ -119,13 +119,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /Users/iomayr/data/mysql
+      device: /home/iomayr/data/mysql
   wp:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /Users/iomayr/data/wordpress
+      device: /home/iomayr/data/wordpress
 networks:
   inceptionNet:
     driver: bridge
