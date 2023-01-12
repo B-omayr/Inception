@@ -13,7 +13,7 @@ services:
     volumes:
       - db:/var/lib/mysql
     networks:
-      - inceptioNnet
+      - inceptionNet
     
   nginx:
     build: ./requirements/nginx
@@ -29,7 +29,7 @@ services:
     depends_on:
       - wordpress
     networks:
-      - inceptioNnet  
+      - inceptionNet  
     
   wordpress:
     build: ./requirements/wordpress
@@ -46,14 +46,14 @@ services:
       - mariadb
       - redis
     networks:
-      - inceptioNnet
+      - inceptionNet
 
   website:
     build: ./requirements/bonus/website
     container_name: website
     image: website
     networks:
-      - inceptioNnet
+      - inceptionNet
     ports:
       - 81:81
     restart: unless-stopped
@@ -66,7 +66,7 @@ services:
       - 6379:6379
     restart: unless-stopped
     networks:
-      - inceptioNnet
+      - inceptionNet
   
   adminer:
     build: ./requirements/bonus/adminer
@@ -78,7 +78,7 @@ services:
     depends_on:
       - mariadb
     networks:
-      - inceptioNnet
+      - inceptionNet
 
   cadvisor:
     build: ./requirements/bonus/cadvisor
@@ -88,7 +88,7 @@ services:
       - 8081:8080
     restart: unless-stopped
     networks:
-      - inceptioNnet
+      - inceptionNet
     volumes:
       - "/:/rootfs:ro"
       - "/var/run:/var/run:rw"
@@ -110,7 +110,7 @@ services:
       - "20:20"
       - "40000-40005:40000-40005"
     networks:
-      - inceptioNnet
+      - inceptionNet
     restart: always
 
 volumes:
@@ -127,5 +127,5 @@ volumes:
       o: bind
       device: /Users/iomayr/data/wordpress
 networks:
-  inceptioNnet:
+  inceptionNet:
     driver: bridge
