@@ -5,7 +5,7 @@ RUN apt update -y && \
 
 EXPOSE 3306
 
-COPY ./conf/initial_db.sql /etc/initial_db.sql
+COPY ./tools/initial_db.sql /etc/initial_db.sql
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d
 
 RUN  service mysql start && mysql -u root < /etc/initial_db.sql  && rm -f /var/www/initial_db.sql;
