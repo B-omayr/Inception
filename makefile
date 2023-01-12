@@ -1,6 +1,6 @@
 build:
-	mkdir -p /Users/iomayr/data/mysql
-	mkdir -p /Users/iomayr/data/wordpress
+	mkdir -p /home/iomayr/data/mysql
+	mkdir -p /home/iomayr/data/wordpress
 	docker-compose -f srcs/docker-compose.yml up --build
 
 stop:
