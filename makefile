@@ -10,7 +10,7 @@ up:
 	docker-compose -f srcs/docker-compose.yml up
 
 clean:
-	rm -rf /Users/iomayr/data
+	echo "Temporary1337@@@" | sudo -S rm -rf /home/iomayr/data;
 	docker-compose -f srcs/docker-compose.yml down -v
 
 fclean:
