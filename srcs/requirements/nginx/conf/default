@@ -2,7 +2,7 @@ server {
     listen 443 http2 ssl;
     listen [::]:443 http2 ssl;
     
-    server_name iomayr.42.fr;
+    server_name iomayr.42.fr www.iomayr.42.fr ;
     
     ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
     ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
@@ -10,10 +10,10 @@ server {
     ssl_protocols TLSv1.3;
     
     root /var/www/html/;
-    index index.php ;
+    index index.php index.html index.htm ;
 
     location / {
-    try_files $uri $uri/ /index.php?$args;
+        try_files $uri $uri/ /index.php?$args;
     }
 
     location ~ \.php$ {
